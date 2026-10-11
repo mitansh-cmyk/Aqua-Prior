@@ -14,6 +14,7 @@ The app works in two modes: **offline demo mode**, where the full engine runs in
 Built for the **AWS Environmental Hackathon** by WeMakeDevs. It uses AWS Amplify, API Gateway, Lambda, DynamoDB, S3, Bedrock (through the Strands Agents SDK) and CloudWatch.
 
 **Live Demo:** [Open AquaPrior](https://main.d3vogdz4k7ydfh.amplifyapp.com/)
+**Demo Video:** [AquaPrior](https://youtu.be/ug6V9DO5Wzs)
 
 <!-- Add your demo video link here: **Prototype Video:** [Watch the Demo](LINK) -->
 

@@ -37,7 +37,7 @@ Built for the **AWS Environmental Hackathon** by WeMakeDevs. It uses AWS Amplify
 
 | Screen | What it gives you |
 |---|---|
-| **Dashboard** | Study area, number of zones, High-priority zones, wells used, the score factors and their weights, model validation, and the top 10 zones. |
+| **Dashboard** | Study area, number of zones, High-priority zones, wells used, the score factors and their weights, and the top 10 zones. |
 | **Map & zone** | Every zone as a pin coloured by tier (High, Medium, Low), real wells as ◆, and fading by data confidence. Click a zone for its score, rank, factor breakdown, measured depth and trend, recommended structure, cost, estimated benefit and the reasons. |
 | **Budget & what-if** | Sliders for budget, rainfall change and extraction change. Shows the optimized project list, numbered pins on the map, change against the baseline, and how the top zones' scores shift. |
 | **Scenarios** | Four plans side by side with a chart: Baseline, Budget constrained, Rainfall −20% and Extraction −15%. |

@@ -158,9 +158,6 @@ cd Aqua-Prior/frontend
 npm install
 npm run dev
 ```
-
-Open the printed address (**http://localhost:5173**). The header badge shows **Offline demo mode**. An internet connection is needed for the map tiles.
-
 To check the backend engine without AWS (Python 3.9 or newer, no packages needed):
 
 ```bash

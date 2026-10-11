@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AquaPrior - groundwater recharge decision support (API Gateway + Lambda + DynamoDB + S3 + Strands agent)
+Parameters:
+  BedrockModelId:
+    Type: String
+    Default: ''
+    Description: Optional Bedrock model/inference-profile id for the Strands agent (leave empty for the SDK default). Model access must be enabled in Bedrock.
+Resources:
+  DataBucket:
+    Type: AWS::S3::Bucket
+  PlansTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions: [{AttributeName: id, AttributeType: S}]
+      KeySchema: [{AttributeName: id, KeyType: HASH}]
+  Api:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration: {AllowOrigins: ['*'], AllowMethods: [GET, POST, OPTIONS], AllowHeaders: ['*']}
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: handler.lambda_handler
+      Runtime: python3.12
+      MemorySize: 1024
+      Timeout: 29            # HTTP API integration limit is 30 s
+      Environment:
+        Variables:
+          DATA_BUCKET: !Ref DataBucket
+          PLANS_TABLE: !Ref PlansTable
+          BEDROCK_MODEL_ID: !Ref BedrockModelId
+          USE_STRANDS: 'true'
+      Policies:
+        - S3ReadPolicy: {BucketName: !Ref DataBucket}
+        - DynamoDBCrudPolicy: {TableName: !Ref PlansTable}
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:InvokeModelWithResponseStream]
+              Resource: '*'
+      Events:
+        Any:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: /{proxy+}, Method: ANY}
+Outputs:
+  ApiUrl: {Value: !Sub 'https://${Api}.execute-api.${AWS::Region}.amazonaws.com'}
+  DataBucketName: {Value: !Ref DataBucket}

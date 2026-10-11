@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="system-ui,Segoe UI,sans-serif">
+  <rect width="900" height="420" fill="#f8fafc"/>
+  <text x="450" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">AquaPrior – AWS Architecture</text>
+  <!-- Frontend -->
+  <rect x="30" y="60" width="160" height="70" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="110" y="90" text-anchor="middle" font-size="13" font-weight="600" fill="#0c4a6e">Frontend</text>
+  <text x="110" y="110" text-anchor="middle" font-size="11" fill="#0369a1">React + Leaflet</text>
+  <!-- Arrow -->
+  <path d="M190 95 H250" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- API Gateway -->
+  <rect x="250" y="60" width="160" height="70" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="330" y="90" text-anchor="middle" font-size="13" font-weight="600" fill="#78350f">API Gateway</text>
+  <text x="330" y="110" text-anchor="middle" font-size="11" fill="#92400e">HTTP API (REST)</text>
+  <!-- Arrow -->
+  <path d="M410 95 H470" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Lambda -->
+  <rect x="470" y="50" width="180" height="90" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="560" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="#4c1d95">Lambda</text>
+  <text x="560" y="100" text-anchor="middle" font-size="11" fill="#5b21b6">handler + engine.py</text>
+  <text x="560" y="118" text-anchor="middle" font-size="11" fill="#5b21b6">score · optimize · what-if</text>
+  <!-- Down arrows from Lambda -->
+  <path d="M520 140 V170" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M560 140 V170" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M600 140 V170" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- S3 -->
+  <rect x="430" y="180" width="120" height="60" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="490" y="205" text-anchor="middle" font-size="12" font-weight="600" fill="#14532d">S3</text>
+  <text x="490" y="222" text-anchor="middle" font-size="10" fill="#166534">zones · wells · meta</text>
+  <!-- DynamoDB -->
+  <rect x="560" y="180" width="120" height="60" rx="8" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+  <text x="620" y="205" text-anchor="middle" font-size="12" font-weight="600" fill="#831843">DynamoDB</text>
+  <text x="620" y="222" text-anchor="middle" font-size="10" fill="#9d174d">saved plans</text>
+  <!-- Strands Agent -->
+  <rect x="700" y="180" width="140" height="60" rx="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
+  <text x="770" y="205" text-anchor="middle" font-size="12" font-weight="600" fill="#7c2d12">Strands Agent</text>
+  <text x="770" y="222" text-anchor="middle" font-size="10" fill="#9a3412">Bedrock · tools</text>
+  <!-- Offline note -->
+  <rect x="30" y="180" width="200" height="80" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="130" y="205" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Offline fallback</text>
+  <text x="130" y="225" text-anchor="middle" font-size="11" fill="#475569">lib.js engine in browser</text>
+  <text x="130" y="242" text-anchor="middle" font-size="11" fill="#475569">same rules as engine.py</text>
+  <!-- Analysis pipeline -->
+  <rect x="30" y="300" width="840" height="90" rx="10" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="50" y="325" font-size="12" font-weight="600" fill="#0f172a">Offline analysis pipeline</text>
+  <text x="50" y="350" font-size="12" fill="#475569">India-WRIS wells  →  score_pune.py  →  data/*.json  →  upload to S3  (or serve from public/data for Netlify offline demo)</text>
+  <text x="50" y="372" font-size="11" fill="#64748b">No SageMaker: small XGBoost trained offline on 145 wells. Lambda + API Gateway + S3 + DynamoDB + Strands/Bedrock do the real work.</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>
